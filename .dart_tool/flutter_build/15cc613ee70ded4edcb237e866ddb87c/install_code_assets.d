@@ -1,0 +1,1 @@
+ D:\\Kuliah\\Semester\ 5\\Prak\ Mobile\\Project\\.dart_tool\\flutter_build\\15cc613ee70ded4edcb237e866ddb87c\\native_assets.json: 

@@ -41,26 +41,108 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Daftar')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            TextField(
-              controller: usernameController,
-              decoration: InputDecoration(labelText: 'Username'),
+      appBar: AppBar(title: Text('Daftar',
+          style: TextStyle(
+            color: Colors.white
+          ),
+        )
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            height: 100,
+            width: 100,
+            decoration: BoxDecoration(
+              image: DecorationImage(image: 
+                AssetImage(
+                  "assets/ico/Steam-icon.png"
+                ), fit: BoxFit.cover
+              ),
             ),
-            TextField(
-              controller: passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
-              obscureText: true,
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _register,
-              child: Text('Daftar'),
-            ),
-          ],
+          ),
+          _usernameField(),
+          _passwordField(),
+          _DaftarButton(context)
+          
+        ],
+      ),
+    );
+  }
+
+Widget _usernameField() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: TextFormField(
+        enabled: true,
+        controller: usernameController,
+        style: TextStyle(
+          color: Color.fromARGB(255, 72, 74, 74),
+          fontWeight: FontWeight.bold
+        ),
+        decoration: InputDecoration(
+          hintText: "Username. . .",
+          hintStyle: TextStyle(
+            color: Color.fromARGB(255, 72, 74, 74),
+            // fontWeight: FontWeight.bold,
+          ),
+          fillColor: Colors.white,
+          filled: true,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8)),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _passwordField() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: TextFormField(
+        enabled: true,
+        obscureText: true,
+        controller: passwordController,
+         style: TextStyle(
+          color: Color.fromARGB(255, 72, 74, 74),
+          fontWeight: FontWeight.bold
+        ),
+        decoration: InputDecoration(
+          hintText: "Password. . .",
+          hintStyle: TextStyle(
+            color: Color.fromARGB(255, 72, 74, 74),
+            // fontWeight: FontWeight.bold,
+          ),
+          fillColor: Colors.white,
+          filled: true,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8)),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _DaftarButton(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: 20, 
+        vertical: 10
+      ),
+      width: MediaQuery.of(context).size.width,
+      child: ElevatedButton(
+        onPressed: () {
+          print("DAFTAR");
+          _register();
+        },
+        style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.white,
+          backgroundColor: Color.fromARGB(255, 37, 216, 101),
+        ),
+        child: Text("DAFTAR", 
+        style: TextStyle(
+          fontWeight: FontWeight.bold
+          ),
         ),
       ),
     );

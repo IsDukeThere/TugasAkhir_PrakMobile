@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project_akhir/controllers/movie_controller.dart';
 import 'package:project_akhir/model/movie_list.dart';
 import 'package:project_akhir/services/lokasi_service.dart';
@@ -193,7 +194,7 @@ class _MovieListViewState extends State<Home> {
                       ),
                     );
                 },
-                icon: Icon(Icons.logout, color: Colors.white),
+                icon: FaIcon(FontAwesomeIcons.rightFromBracket, color: Colors.white),
               ),
               ],
             ),
@@ -213,7 +214,6 @@ class _MovieListViewState extends State<Home> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
               child: Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
                     onPressed: () async {
@@ -221,14 +221,64 @@ class _MovieListViewState extends State<Home> {
                       await _movie();
                       setState(() => isRegionLoading = false);
                     },
-                    child: Text("Semua Film"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: _currentMode == MovieViewMode.popular
+                          ? const Color.fromARGB(255, 37, 216, 101)
+                          : Colors.transparent,
+
+                      foregroundColor: _currentMode == MovieViewMode.popular
+                          ? Colors.white
+                          : const Color.fromARGB(255, 37, 216, 101),
+
+                      side: _currentMode == MovieViewMode.popular
+                          ? BorderSide.none
+                          : const BorderSide(
+                              color: Color.fromARGB(255, 37, 216, 101),
+                              width: 2,
+                            ),
+                            
+                      elevation: _currentMode == MovieViewMode.popular ? 2 : 0,
+                    ),
+                    child: Text("Semua Film",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
                   ),
                   SizedBox(width:15,),
                   ElevatedButton.icon(
                     onPressed: _loadMoviesByRegion,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: _currentMode == MovieViewMode.byLanguage
+                          ? const Color.fromARGB(255, 37, 216, 101)
+                          : Colors.transparent,
+
+                      foregroundColor: _currentMode == MovieViewMode.byLanguage
+                          ? Colors.white
+                          : const Color.fromARGB(255, 37, 216, 101),
+
+                      side: _currentMode == MovieViewMode.byLanguage
+                          ? BorderSide.none
+                          : const BorderSide(
+                              color: Color.fromARGB(255, 37, 216, 101),
+                              width: 2,
+                            ),
+
+                      elevation: _currentMode == MovieViewMode.byLanguage ? 2 : 0,
+                    ),
+                    icon: FaIcon(
+                      FontAwesomeIcons.locationDot,
+                      color: _currentMode == MovieViewMode.byLanguage
+                          ? Colors.white
+                          : const Color.fromARGB(255, 37, 216, 101),
+                    ),
                     label: Text(userCountry == null
                         ? "Berdasarkan Lokasi..."
-                        : "Film dari $userCountry"),
+                        : "Film dari $userCountry",
+                          style: TextStyle(
+                          fontWeight: FontWeight.bold
+                          ),
+                        ),
                   ),
                 ],
               ),

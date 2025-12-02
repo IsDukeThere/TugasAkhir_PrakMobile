@@ -16,7 +16,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 31, 44, 68),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -47,7 +46,13 @@ class _LoginPageState extends State<LoginPage> {
                 context, 
                 MaterialPageRoute(builder: (context) => Register())
                 );
-          }, child: Text("Daftar"))
+          }, child: Text("Daftar",
+                style: TextStyle(
+                  color: Color.fromARGB(255, 37, 216, 101),
+                  fontWeight: FontWeight.bold
+                ),
+              )
+            )
           ],
       ),
     );
@@ -120,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
         },
         style: ElevatedButton.styleFrom(
           foregroundColor: Colors.white,
-          backgroundColor: const Color.fromARGB(255, 54, 103, 160),
+          backgroundColor: Color.fromARGB(255, 37, 216, 101),
         ),
         child: Text("LOGIN", 
         style: TextStyle(

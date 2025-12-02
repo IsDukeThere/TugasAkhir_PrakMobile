@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_akhir/views/home.dart';
 import 'package:project_akhir/views/profil.dart';
 import 'package:project_akhir/views/watchlist.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Navbar extends StatefulWidget {
   final String name;
@@ -26,16 +27,36 @@ class _NavbarState extends State<Navbar> {
     ];
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      extendBody: true,
       body: pages[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: (index) => setState(() => _selectedIndex =index),
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.movie), label: "Watchlist"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-        ]),
+      bottomNavigationBar: Container(
+        height: 75,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15)
+          )
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15)
+          ),
+          child: BottomNavigationBar(
+            backgroundColor: const Color.fromARGB(255, 37, 216, 101),
+            selectedItemColor: Colors.white,
+            unselectedItemColor: Colors.white70,
+            currentIndex: _selectedIndex,
+            onTap: (index) => setState(() => _selectedIndex =index),
+            type: BottomNavigationBarType.fixed,
+            items: const [
+              BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.house), label: "Home"),
+              BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.ticket), label: "Watchlist"),
+              BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.solidUser), label: "Profile"),
+            ]
+          ),
+        ),
+      ),
     );
   }
 }
